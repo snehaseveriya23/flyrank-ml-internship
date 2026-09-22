@@ -3,7 +3,7 @@
 **Track**: Machine Learning | Week 8 Capstone  
 **Lane**: Refresh / Content Opportunity Scoring  
 **Data Source**: Built on the [FlyRank ML Internship dataset](https://flyrank.ai)  
-**Deployed Paper**: `docs/index.html` (Accessible via GitHub Pages)
+**Deployed Research Paper**: [Live on GitHub Pages](https://snehaseveriya23.github.io/flyrank-ml-internship/)
 
 ---
 
@@ -45,12 +45,11 @@ python work/capstone_pipeline.py
 ```
 
 ### 3. Deploy to GitHub Pages (Free & Instant)
-1. Push this repository to your GitHub account (e.g. `https://github.com/<your-username>/google-search-ranking-capstone`).
+1. Push this repository to your GitHub account: `https://github.com/snehaseveriya23/flyrank-ml-internship`.
 2. Go to **Settings > Pages**.
-3. Under **Build and deployment > Branch**, select `main` (or `master`) and folder `/docs`.
+3. Under **Build and deployment > Branch**, select `main` and folder `/docs`.
 4. Click **Save**. Your research paper will be live at:
-   `https://<your-username>.github.io/google-search-ranking-capstone/`
-5. Update `submission/paper_url.txt` with your exact live URL.
+   `https://snehaseveriya23.github.io/flyrank-ml-internship/`
 
 ---
 
