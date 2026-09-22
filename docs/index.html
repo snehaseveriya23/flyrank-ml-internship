@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Organic Search Content Decay & Discoverability Refresh Opportunities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --text-main: #202124;
+            --text-muted: #5f6368;
+            --bg-main: #ffffff;
+            --bg-alt: #f8f9fa;
+            --border-color: #dadce0;
+            --accent-green: #34a853;
+            --accent-red: #ea4335;
+            --accent-amber: #fbbc04;
+            --font-serif: 'Newsreader', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            line-height: 1.75;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 3.5rem 1.5rem 2.5rem;
+            background: linear-gradient(180deg, #f8fafd 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .badge-bar {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            background: #e8f0fe;
+            color: var(--primary-dark);
+            border: 1px solid #c2e7ff;
+        }
+
+        .badge.track {
+            background: #e6f4ea;
+            color: #137333;
+            border-color: #ceead6;
+        }
+
+        h1.paper-title {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #111827;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .author-meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+        }
+
+        .author-meta strong {
+            color: var(--text-main);
+        }
+
+        .abstract-card {
+            background-color: #f8fafd;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 1.6rem 1.8rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .abstract-card h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .abstract-card p {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.65;
+            color: #1f2937;
+        }
+
+        main {
+            padding: 2.5rem 0 5rem;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: #374151;
+        }
+
+        ul, ol {
+            margin: 0 0 1.4rem 1.6rem;
+            color: #374151;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .chart-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .chart-caption {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+            font-style: italic;
+        }
+
+        table.results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        table.results-table th, table.results-table td {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        table.results-table th {
+            background-color: var(--bg-alt);
+            font-weight: 600;
+            color: #202124;
+        }
+
+        table.results-table tr:hover {
+            background-color: #fbfcfe;
+        }
+
+        .highlight-row {
+            background-color: #eef5fc !important;
+            font-weight: 600;
+        }
+
+        .callout-box {
+            background-color: #fff9e6;
+            border-left: 4px solid #fbbc04;
+            border-radius: 0 6px 6px 0;
+            padding: 1.2rem 1.4rem;
+            margin: 1.8rem 0;
+        }
+
+        .rec-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.4rem;
+            margin-bottom: 1.2rem;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .rec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .tier-tag {
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .tier-p0 { background: #fce8e6; color: #c5221f; }
+        .tier-p1 { background: #fef7e0; color: #b06000; }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-alt);
+            padding: 3rem 1.5rem;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f1f3f4; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.88em; font-family: var(--font-mono); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="badge-bar">
+            <span class="badge track">Machine Learning Capstone</span>
+            <span class="badge">Search Intelligence & Ranking</span>
+            <span class="badge">Peer-Reviewed Research Paper</span>
+        </div>
+        <h1 class="paper-title">Predicting Organic Search Content Decay & Discoverability Refresh Opportunities</h1>
+        <div class="author-meta">
+            <div><strong>Lane:</strong> Refresh / Content Opportunity Scoring</div>
+            <div><strong>Validation:</strong> Out-of-Time Holdout Split</div>
+            <div><strong>Dataset Credit:</strong> <a href="https://flyrank.ai" target="_blank" rel="noopener">FlyRank ML Dataset</a></div>
+        </div>
+
+        <div class="abstract-card">
+            <h3>Abstract (5-Sentence Summary)</h3>
+            <p>
+                Organic search discoverability suffers from progressive content decay, yet editorial teams lack predictive tooling to distinguish transient SERP fluctuations from structural decay. In this paper, we formulate search refresh opportunity scoring as a time-aware classification task on multi-week search performance trajectories. By engineering temporal velocity signals, dwell time stability metrics, and non-linear power-law SERP CTR expectation ratios, we train and evaluate regularized tree-based ensembles on an Out-Of-Time holdout split. Our Gradient Boosted Decision Tree model achieves a Precision@Top10% of 90.0% and a PR-AUC of 0.8172, significantly outperforming rule-based velocity heuristics (PR-AUC 0.6311). These probabilistic outputs are operationalized into a ranked decision-support matrix with automated reason codes, directing editorial resources toward high-impact recoverable search traffic.
+            </p>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section id="introduction">
+        <h2>1. Introduction & Problem Statement</h2>
+        <p>
+            In enterprise organic search optimization, maintaining visibility across thousands of indexed URLs represents a major operational challenge. Content teams traditionally rely on lagging heuristics—such as retroactive traffic losses or arbitrary calendar review cycles. This reactive approach wastes editorial effort on transient variations while failing to catch high-value decaying pages before they lose top search rankings.
+        </p>
+        <p>
+            <strong>Decision Supported:</strong> This system provides an automated decision-support engine answering: <em>Which high-opportunity search pages are projected to suffer severe organic decay over the next 4-week cycle, and what specific remediation action (intent realignment, CTR snippet overhaul, or internal link reinforcement) yields the highest recoverable click gain?</em>
+        </p>
+    </section>
+
+    <section id="data">
+        <h2>2. Data & Public-Safety Governance</h2>
+        <p>
+            The study is built upon the <strong>FlyRank Search Intelligence Warehouse release</strong>, spanning 16 contiguous weeks of search performance across 1,200 unique URLs.
+        </p>
+        <h3>Public-Safety Protocol</h3>
+        <ul>
+            <li><strong>Zero Client Identifiers / Domains:</strong> All domain names and URLs are replaced with anonymized hashes (<code>anon_page_0001</code> to <code>anon_page_1200</code>) and topical clusters (<code>cluster_00</code> to <code>cluster_23</code>).</li>
+            <li><strong>Strict Exclusions:</strong> Private search query strings, user identifiers, raw referrer logs, and internal algorithms were completely excluded from the dataset.</li>
+            <li><strong>Normalized Metrics:</strong> Impressions, clicks, position distributions, and dwell times represent normalized aggregated metrics.</li>
+        </ul>
+    </section>
+
+    <section id="methodology">
+        <h2>3. Methodology & Validation Design</h2>
+        <p>
+            To guarantee zero lookahead bias, the modeling pipeline implements a sliding temporal window structure:
+        </p>
+        <ul>
+            <li><strong>Historical Lookback Window (4 Weeks):</strong> Computes historical click trends, SERP position velocity, and dwell time variance.</li>
+            <li><strong>Expected CTR Baseline:</strong> Compares observed CTR against the theoretical SERP power-law curve: <code>CTR_expected = 0.30 / (position ^ 0.85)</code>.</li>
+            <li><strong>Target Label Definition:</strong> A page is labeled as <code>needs_urgent_refresh = 1</code> if it experiences a future 4-week organic click drop exceeding 20% while sustaining an impression baseline (>400 weekly impressions).</li>
+            <li><strong>Out-of-Time (OOT) Holdout Validation:</strong> All cutoff dates t &lt;= 9 form the training set; cutoff dates t &gt;= 10 serve as the untouched holdout test partition.</li>
+        </ul>
+    </section>
+
+    <section id="results">
+        <h2>4. Empirical Results & Benchmark Evaluation</h2>
+        <p>
+            We benchmark our Gradient Boosted Decision Tree model against three baselines: a standard heuristic rule, regularized Logistic Regression, and a Random Forest ensemble on the identical Out-of-Time test split.
+        </p>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Model Architecture</th>
+                    <th>ROC-AUC</th>
+                    <th>PR-AUC (Avg Prec)</th>
+                    <th>Brier Score</th>
+                    <th>Precision @ Top 10%</th>
+                    <th>Precision @ Top 20%</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Heuristic Rule Baseline</td>
+                    <td>0.8253</td>
+                    <td>0.6311</td>
+                    <td>0.1645</td>
+                    <td>0.8417</td>
+                    <td>0.7417</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>0.9004</td>
+                    <td>0.7709</td>
+                    <td>0.1077</td>
+                    <td>0.8667</td>
+                    <td>0.8125</td>
+                </tr>
+                <tr>
+                    <td>Random Forest Classifier</td>
+                    <td>0.9199</td>
+                    <td>0.8065</td>
+                    <td>0.1020</td>
+                    <td>0.8750</td>
+                    <td>0.8292</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Gradient Boosted Trees (Opportunity Engine)</strong></td>
+                    <td><strong>0.9254</strong></td>
+                    <td><strong>0.8172</strong></td>
+                    <td><strong>0.0959</strong></td>
+                    <td><strong>0.9000</strong></td>
+                    <td><strong>0.8417</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="chart-box">
+            <img src="assets/model_benchmark.png" alt="Model Benchmark Comparison">
+            <div class="chart-caption">Figure 1: Benchmark metrics across Out-of-Time holdout validation. Gradient Boosted Trees achieve a 90.0% Precision in the top 10% priority queue.</div>
+        </div>
+
+        <div class="chart-box">
+            <img src="assets/feature_importance.png" alt="Feature Importance Ranking">
+            <div class="chart-caption">Figure 2: Gini feature importance weights. Click trend momentum (4w) and CTR ratio to expected SERP curve are the strongest predictive signals.</div>
+        </div>
+    </section>
+
+    <section id="limitations">
+        <h2>5. Limitations & Honest Framing</h2>
+        <div class="callout-box">
+            <p>
+                The models developed in this paper identify <strong>statistical associations and directional risk</strong> in observational search telemetry. They do <strong>not</strong> reverse-engineer Google's proprietary ranking algorithm, nor do they guarantee causal ranking increases upon content modification. Search algorithms are non-stationary and influenced by macro SERP layout updates, competitor publishing cadence, and seasonal demand shifts. Consequently, predicted scores must be used strictly as an editorial prioritization filter rather than a deterministic ranking guarantee.
+            </p>
+        </div>
+    </section>
+
+    <section id="recommendations">
+        <h2>6. Ranked Recommendations & Action Playbook</h2>
+        <p>
+            Probabilistic decay outputs are synthesized into actionable editorial queues grouped into operational tiers:
+        </p>
+
+        <div class="rec-card">
+            <div class="rec-header">
+                <span class="tier-tag tier-p0">Tier P0: Emergency Content Refresh & Intent Realignment</span>
+            </div>
+            <p><strong>Trigger Condition:</strong> Severe SERP slippage and negative click momentum despite strong top-of-funnel search demand.</p>
+            <p><strong>Action Playbook:</strong> Comprehensive editorial overhaul: re-audit user search intent, update stale factual references, introduce multimedia assets, and expand coverage of secondary query subtopics.</p>
+        </div>
+
+        <div class="rec-card">
+            <div class="rec-header">
+                <span class="tier-tag tier-p0">Tier P0: Snippet & CTR Under-Capture Overhaul</span>
+            </div>
+            <p><strong>Trigger Condition:</strong> Page maintains Top 3 SERP position, but observed CTR is &lt;60% of expected power-law benchmark.</p>
+            <p><strong>Action Playbook:</strong> Rewrite Title tags and meta descriptions to improve SERP click-through appeal; implement schema markup to capture rich snippets.</p>
+        </div>
+
+        <div class="rec-card">
+            <div class="rec-header">
+                <span class="tier-tag tier-p1">Tier P1: Internal Link & Freshness Injection</span>
+            </div>
+            <p><strong>Trigger Condition:</strong> Moderate velocity slippage and aging content timestamp (&gt;180 days).</p>
+            <p><strong>Action Playbook:</strong> Route contextual internal links from high-authority parent clusters; update published timestamp after refreshing introduction.</p>
+        </div>
+
+        <div class="chart-box">
+            <img src="assets/tier_distribution.png" alt="Tier Distribution">
+            <div class="chart-caption">Figure 3: Distribution of predicted opportunity scores segmented by recommended operational action tier.</div>
+        </div>
+    </section>
+
+    <section id="reproducibility">
+        <h2>7. Reproducibility & Artifacts</h2>
+        <p>
+            All experimental artifacts, data preparation pipelines, and Jupyter notebooks are packaged in the repository:
+        </p>
+        <ul>
+            <li><code>work/01_data_exploration_and_prep.ipynb</code> — Ingestion, distribution profiling, and anonymization audit.</li>
+            <li><code>work/02_feature_engineering_and_eda.ipynb</code> — Sliding-window feature extraction and correlation analysis.</li>
+            <li><code>work/03_model_training_and_validation.ipynb</code> — Model benchmarking and Out-of-Time holdout evaluation.</li>
+            <li><code>work/04_ranking_and_recommendation_engine.ipynb</code> — Synthesis notebook producing the ranked operational queue.</li>
+            <li><code>work/capstone_pipeline.py</code> — End-to-end executable pipeline reproducing all figures and metrics.</li>
+            <li><code>submission/paper_url.txt</code> — Submission pointer containing the live deployed paper URL.</li>
+        </ul>
+    </section>
+
+    <section id="acknowledgments">
+        <h2>8. Acknowledgments & Data Credit</h2>
+        <p>
+            <em>This research was built on the FlyRank ML Internship dataset (<a href="https://flyrank.ai" target="_blank" rel="noopener">https://flyrank.ai</a>).</em> We express our gratitude to the FlyRank engineering and research teams for providing real-world search intelligence schemas and evaluation benchmarks.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Machine Learning Capstone Research. Released under MIT Open Access License.</p>
+        <p style="margin-top: 0.5rem;">Deployed via GitHub Pages | Built on the FlyRank ML Internship Dataset (<a href="https://flyrank.ai">flyrank.ai</a>)</p>
+    </div>
+</footer>
+
+</body>
+</html>

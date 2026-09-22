@@ -1,0 +1,31 @@
+page_id,cluster_id,opportunity_score,action_tier,reason_code,current_avg_position,past_4w_impressions_mean,expected_recoverable_clicks
+anon_page_0677,cluster_05,0.9769909444393474,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,5.01,2147.0,24.2
+anon_page_1142,cluster_14,0.972878510299869,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,11.09,30983.5,380.6
+anon_page_0069,cluster_21,0.9727290353168406,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.5,10757.25,245.9
+anon_page_0183,cluster_15,0.9692498369909844,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.42,1751.75,40.7
+anon_page_1114,cluster_10,0.9626432620845928,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.57,2025.5,26.4
+anon_page_0183,cluster_15,0.9581916901431131,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.58,1759.5,37.8
+anon_page_1180,cluster_04,0.9579597267692086,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.59,9944.0,233.9
+anon_page_0353,cluster_17,0.9547258326214314,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.34,47331.75,694.1
+anon_page_1167,cluster_15,0.9539634842030544,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.7,47662.25,480.4
+anon_page_1167,cluster_15,0.9527664798514973,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.56,48892.25,604.1
+anon_page_0069,cluster_21,0.9524913953222205,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.55,10696.25,232.9
+anon_page_0353,cluster_17,0.9520765268395395,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,8.78,47401.75,627.1
+anon_page_0220,cluster_04,0.9508079409603588,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,10.43,4274.25,42.9
+anon_page_0803,cluster_11,0.9497700822725214,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,10.81,3458.75,52.9
+anon_page_1142,cluster_14,0.9468147331246004,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,10.81,34150.25,480.5
+anon_page_0677,cluster_05,0.9455348392414238,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,4.82,2169.75,26.0
+anon_page_1014,cluster_06,0.9451938419239582,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,10.31,1066.75,13.6
+anon_page_0369,cluster_09,0.9426970997768267,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,7.92,13366.5,220.8
+anon_page_1121,cluster_17,0.9419235562977862,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,8.05,41066.25,531.8
+anon_page_0594,cluster_18,0.9419175650365109,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,10.58,9781.75,129.1
+anon_page_0594,cluster_18,0.9412354468307174,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,10.0,10112.0,142.6
+anon_page_1184,cluster_08,0.9391433515213302,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.4,2953.0,36.1
+anon_page_1180,cluster_04,0.9379342977243104,P0 - Snippet & CTR Under-Capture Fix,Page ranks well but under-captures search CTR vs expected power curve.,2.53,9842.5,242.9
+anon_page_0149,cluster_05,0.9360323103602446,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,9.2,41765.5,552.6
+anon_page_0635,cluster_11,0.9350033463524073,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.31,2618.5,32.6
+anon_page_1184,cluster_08,0.934987323612668,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,8.68,2956.75,30.4
+anon_page_0035,cluster_11,0.9344268929173561,P0 - Comprehensive Content Depth Overhaul,Sustained momentum and dwell time decay across core search queries.,10.71,2881.0,49.6
+anon_page_0400,cluster_16,0.9341821366180508,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,9.76,9076.25,121.3
+anon_page_0220,cluster_04,0.9340374523832404,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,9.78,4252.0,46.1
+anon_page_0657,cluster_09,0.9338143409199624,P0 - Emergency Refresh & Intent Realignment,Severe SERP slippage (>1.2 positions) under high search demand.,9.46,5896.0,86.1
